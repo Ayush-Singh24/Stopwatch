@@ -6,7 +6,7 @@ export default function LapTable({ laps }) {
           {laps.map((lap, ind) => {
             return (
               <tr>
-                <td className="lap__display">Lap {ind + 1} </td>
+                <td className="lap__display lap__number">Lap {ind + 1} </td>
                 <td className="lap__display">{lap}</td>
               </tr>
             );

@@ -9,6 +9,15 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  font-family: "Cutive Mono", monospace;
+  --bg-color: #1a1f38;
+  --bg-color-dark: #13172a;
+  --primary-font-color: #fee500;
+  --secondary-font-color: #777777;
+}
+
+body {
+  background-color: var(--bg-color);
 }
 
 .main {
@@ -20,7 +29,21 @@ html {
   gap: 3rem;
 }
 
+.heading {
+  font-size: 5rem;
+  padding: 2rem;
+  color: var(--secondary-font-color);
+  transition: all 0.2s;
+  &:hover {
+    color: var(--primary-font-color);
+    transform: scale(1.02);
+  }
+}
+
 .stopwatch {
+  color: var(--primary-font-color);
+  /* letter-spacing: -10px; */
+  font-weight: 600;
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -33,39 +56,78 @@ html {
   font-size: 8rem;
 }
 
+.fullstop {
+  color: var(--secondary-font-color);
+}
+
+.cSeconds {
+  font-size: 6rem;
+  font-weight: 300;
+  color: var(--secondary-font-color);
+}
+
 .btns {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
 }
 
 .btn {
-  padding: 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-font-color);
+  font-family: "Cutive Mono", monospace;
+  background-color: var(--bg-color);
+  border-color: var(--primary-font-color);
+  border-radius: 100px;
+  padding: 1.25rem 3rem;
+  border-style: solid;
+  border-width: 0.15rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.03);
+    background-color: var(--primary-font-color);
+    color: var(--bg-color);
+  }
 }
 
 .lap__container {
-  height: 20rem;
+  margin-bottom: 1rem;
+  height: 18rem;
   overflow-y: scroll;
   &::-webkit-scrollbar {
-    width: 1rem;
+    width: 0.5rem;
     /* background-color: orangered; */
+    position: absolute;
+    left: 0;
   }
   &::-webkit-scrollbar-track {
     background-color: transparent;
+    /* background-color: var(--bg-color-dark); */
+    border-radius: 1rem;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: aqua;
+    background-color: var(--primary-font-color);
     border-radius: 1rem;
   }
 }
 
 .lap {
-  border: 1px solid black;
+  /* border: 0.3rem solid var(--primary-font-color); */
   border-collapse: collapse;
-  margin: 1rem;
+  margin: 0 1rem;
 }
 
 .lap__display {
   padding: 0.5rem 2rem;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   font-size: 3rem;
+  color: var(--primary-font-color);
+}
+
+.lap__number {
+  color: var(--secondary-font-color);
 }

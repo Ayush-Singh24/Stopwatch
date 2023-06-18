@@ -38,8 +38,9 @@ function App() {
 
   const handleLap = () => {
     const arr = [...laps];
-    arr.push(format(minutes) + ":" + format(seconds) + ":" + format(timer));
+    arr.push(format(minutes) + "." + format(seconds) + "." + format(timer));
     setLaps(arr);
+    setDisableReset(false);
   };
 
   const format = (term) => {
@@ -66,9 +67,13 @@ function App() {
 
   return (
     <section className="main">
+      <div className="heading">Stopwatch</div>
       <div className="stopwatch">
         <div className="display">
-          {format(minutes)}:{format(seconds)}:{format(timer)}
+          {format(minutes)}
+          <span className="fullstop">.</span>
+          {format(seconds)}
+          <span className="cSeconds">.{format(timer)}</span>
         </div>
         <div className="btns">
           {!isDisableStart && (
