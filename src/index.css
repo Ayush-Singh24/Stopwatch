@@ -92,6 +92,13 @@ body {
     background-color: var(--primary-font-color);
     color: var(--bg-color);
   }
+
+  &:focus {
+    outline: none;
+    color: var(--bg-color);
+    background-color: var(--primary-font-color);
+    animation: pulsate 1s infinite;
+  }
 }
 
 .lap__container {
@@ -130,4 +137,16 @@ body {
 
 .lap__number {
   color: var(--secondary-font-color);
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
