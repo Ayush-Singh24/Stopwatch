@@ -11,12 +11,21 @@ html {
   box-sizing: border-box;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 3rem;
+}
+
 .stopwatch {
   display: flex;
   flex-direction: column;
+  align-self: center;
   gap: 3rem;
   align-items: center;
-  height: 100vh;
   justify-content: center;
 }
 
@@ -31,4 +40,32 @@ html {
 
 .btn {
   padding: 0 1rem;
+}
+
+.lap__container {
+  height: 20rem;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 1rem;
+    /* background-color: orangered; */
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: aqua;
+    border-radius: 1rem;
+  }
+}
+
+.lap {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 1rem;
+}
+
+.lap__display {
+  padding: 0.5rem 2rem;
+  border: 1px solid black;
+  font-size: 3rem;
 }

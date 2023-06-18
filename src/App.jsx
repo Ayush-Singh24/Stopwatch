@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import LapTable from "./components/LapTable";
 
 function App() {
   const [timer, setTimer] = useState(0);
@@ -7,6 +8,7 @@ function App() {
   const [isDisableStart, setDisableStart] = useState(false);
   const [isDisableStop, setDisableStop] = useState(true);
   const [isDisableReset, setDisableReset] = useState(true);
+  const [laps, setLaps] = useState([]);
   const timerRef = useRef();
   const handleStart = () => {
     setDisableStart(true);
@@ -30,7 +32,14 @@ function App() {
     setMinutes(0);
     setDisableReset(true);
     setDisableStart(false);
-    setDisableStop(false);
+    setDisableStop(true);
+    setLaps([]);
+  };
+
+  const handleLap = () => {
+    const arr = [...laps];
+    arr.push(format(minutes) + ":" + format(seconds) + ":" + format(timer));
+    setLaps(arr);
   };
 
   const format = (term) => {
@@ -38,48 +47,56 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(timer);
+    console.log(laps);
+  }, [laps]);
 
-    if (timer == 100) {
+  useEffect(() => {
+    if (timer > 99) {
       setTimer(0);
       setSeconds(seconds + 1);
     }
   }, [timer]);
 
   useEffect(() => {
-    if (seconds == 60) {
+    if (seconds > 59) {
       setSeconds(0);
       setMinutes(minutes + 1);
     }
   }, [seconds]);
 
   return (
-    <div className="stopwatch">
-      <div className="display">
-        {format(minutes)}:{format(seconds)}:{format(timer)}
+    <section className="main">
+      <div className="stopwatch">
+        <div className="display">
+          {format(minutes)}:{format(seconds)}:{format(timer)}
+        </div>
+        <div className="btns">
+          {!isDisableStart && (
+            <button
+              className="btn btn__start"
+              onClick={handleStart}
+              disabled={isDisableStart}
+            >
+              Start
+            </button>
+          )}
+          {!isDisableStop && (
+            <button className="btn btn__stop" onClick={handleStop}>
+              Stop
+            </button>
+          )}
+          {!isDisableReset && (
+            <button className="btn btn__reset" onClick={handleReset}>
+              Reset
+            </button>
+          )}
+          <button className="btn btn__lap" onClick={handleLap}>
+            Lap
+          </button>
+        </div>
       </div>
-      <div className="btns">
-        {!isDisableStart && (
-          <button
-            className="btn btn__start"
-            onClick={handleStart}
-            disabled={isDisableStart}
-          >
-            Start
-          </button>
-        )}
-        {!isDisableStop && (
-          <button className="btn btn__stop" onClick={handleStop}>
-            Stop
-          </button>
-        )}
-        {!isDisableReset && (
-          <button className="btn btn__reset" onClick={handleReset}>
-            Reset
-          </button>
-        )}
-      </div>
-    </div>
+      <LapTable laps={laps} />
+    </section>
   );
 }
 
