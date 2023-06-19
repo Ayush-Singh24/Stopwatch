@@ -46,7 +46,7 @@ function App() {
   };
 
   const format = (term) => {
-    return String(term).length == 1 ? "0" + term : term;
+    return String(term).length === 1 ? "0" + term : term;
   };
 
   useEffect(() => {
