@@ -8,12 +8,14 @@ function App() {
   const [isDisableStart, setDisableStart] = useState(false);
   const [isDisableStop, setDisableStop] = useState(true);
   const [isDisableReset, setDisableReset] = useState(true);
+  const [isDisableLap, setDisableLap] = useState(true);
   const [laps, setLaps] = useState([]);
   const timerRef = useRef();
   const handleStart = () => {
     setDisableStart(true);
     setDisableStop(false);
     setDisableReset(true);
+    setDisableLap(false);
     timerRef.current = setInterval(() => {
       setTimer((timer) => timer + 1);
     }, 10);
@@ -33,6 +35,7 @@ function App() {
     setDisableReset(true);
     setDisableStart(false);
     setDisableStop(true);
+    setDisableLap(true);
     setLaps([]);
   };
 
@@ -40,7 +43,6 @@ function App() {
     const arr = [...laps];
     arr.push(format(minutes) + "." + format(seconds) + "." + format(timer));
     setLaps(arr);
-    setDisableReset(false);
   };
 
   const format = (term) => {
@@ -67,7 +69,14 @@ function App() {
 
   return (
     <section className="main">
-      <div className="heading">Stopwatch</div>
+      <div
+        className="heading"
+        onClick={() => {
+          window.location.reload();
+        }}
+      >
+        Stopwatch
+      </div>
       <div className="stopwatch">
         <div className="display">
           {format(minutes)}
@@ -95,9 +104,11 @@ function App() {
               Reset
             </button>
           )}
-          <button className="btn btn__lap" onClick={handleLap}>
-            Lap
-          </button>
+          {!isDisableLap && (
+            <button className="btn btn__lap" onClick={handleLap}>
+              Lap
+            </button>
+          )}
         </div>
       </div>
       <LapTable laps={laps} />

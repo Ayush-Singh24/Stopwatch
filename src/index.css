@@ -38,6 +38,7 @@ body {
     color: var(--primary-font-color);
     transform: scale(1.02);
   }
+  cursor: pointer;
 }
 
 .stopwatch {
