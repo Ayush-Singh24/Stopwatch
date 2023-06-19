@@ -50,20 +50,16 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(laps);
-  }, [laps]);
-
-  useEffect(() => {
     if (timer > 99) {
       setTimer(0);
-      setSeconds(seconds + 1);
+      setSeconds((seconds) => seconds + 1);
     }
   }, [timer]);
 
   useEffect(() => {
     if (seconds > 59) {
       setSeconds(0);
-      setMinutes(minutes + 1);
+      setMinutes((minutes) => minutes + 1);
     }
   }, [seconds]);
 
